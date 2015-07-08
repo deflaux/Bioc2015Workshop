@@ -43,18 +43,17 @@ Suppose we have a new dataset.  One of the first things we might do is a basic v
 
 In this example we are reading in previously computed results, but its easy to spin up an [Apache Spark](http://spark.apache.org/) cluster on [Google Compute Engine](https://cloud.google.com/hadoop/what-is-hadoop) and run this analysis.
 
-```{r echo=FALSE, eval=FALSE}
-######################[ CHANGE ME ]##################################
-# This codelab assumes that the current working directory is where the Rmd file resides.
-setwd("/YOUR/PATH/TO/codelabs/R/1000Genomes-BRCA1-analysis")
+```{r eval=FALSE}
+######################[ TIP ]##################################
+## Add the Google Cloud Platform project id under which these queries will run to your .Rprofile.
+## If you are using the Bioconductor workshop docker image, this is already set for you.
 
-# Set the Google Cloud Platform project id under which these queries will run.
-project <- "YOUR-PROJECT-ID"
+# project <- "YOUR-PROJECT-ID"
 #####################################################################
 ```
 
 ```{r message=FALSE, comment=NA}
-pca_1kg <- read.table("../data/1kg-pca.tsv", col.names=c("Sample", "PC1", "PC2"))
+pca_1kg <- read.table(file.path(system.file(package = "Bioc2015Workshop"), "extdata", "1kg-pca.tsv"), col.names=c("Sample", "PC1", "PC2"))
 ```
 This analysis performed an `O(N^2)` computation upon the relevant fields within the *terabyte* of data by running an [Apache Spark](http://spark.apache.org/) job which used the [Google Genomics Variants API](https://cloud.google.com/genomics/v1beta2/reference/variants) for its input.  See the Google Genomics [PCA cookbook entry](http://googlegenomics.readthedocs.org/en/latest/use_cases/compute_principal_coordinate_analysis/index.html) for implementation details and instructions as to how to run this job.
 
@@ -104,7 +103,7 @@ DisplayAndDispatchQuery <- function(queryUri, replacements=list()) {
 ```
 
 ```{r message=FALSE, comment=NA}
-sample_alt_counts <- DisplayAndDispatchQuery("./sql/sample-alt-counts.sql")
+sample_alt_counts <- DisplayAndDispatchQuery(file.path(system.file(package = "Bioc2015Workshop"), "sql", "sample-alt-counts.sql"))
 ```
 Number of rows returned by this query: `r nrow(sample_alt_counts)`.
 
@@ -130,7 +129,7 @@ Suppose we are interested in examining variants within the BRCA1 gene.  We might
 
 Again in this example we read in previously computed results, but since the amount of data over which we are computing is much less, it is feasible to run this Spark job on a local machine in just a few minutes.
 ```{r message=FALSE, comment=NA}
-pca_1kg_brca1 <- read.table("../data/1kg-brca1-pca.tsv", col.names=c("Sample", "PC1", "PC2"))
+pca_1kg_brca1 <- read.table(file.path(system.file(package = "Bioc2015Workshop"), "extdata", "1kg-brca1-pca.tsv"), col.names=c("Sample", "PC1", "PC2"))
 ```
 
 Examining this data visually:
@@ -186,7 +185,7 @@ ggplot(pca_1kg_brca1) +
 Next we perform a [simplistic GWAS](http://homes.cs.washington.edu/~suinlee/genome560/lecture7.pdf) on the BRCA1 variants to retrieve a ranked list of the variants that appear to differentiate these groups.
 ```{r message=FALSE, comment=NA}
 case_sample_ids <- paste("'", filter(pca_1kg_brca1, case==TRUE)$Sample, "'", sep="", collapse=",")
-result <- DisplayAndDispatchQuery("./sql/gwas-brca1-pattern.sql",
+result <- DisplayAndDispatchQuery(file.path(system.file(package = "Bioc2015Workshop"), "sql", "gwas-brca1-pattern.sql"),
                                   list(CASE_SAMPLE_IDS__=case_sample_ids))
 ```
 Number of rows returned by this query: `r nrow(result)`.
@@ -203,8 +202,14 @@ Now let's use the [GoogleGenomics R client](https://github.com/googlegenomics/ap
 require(GoogleGenomics)
 ```
 
-```{r echo=FALSE, eval=FALSE}
-authenticate(file="YOUR/PATH/TO/client_secrets.json")
+```{r eval=FALSE}
+######################[ TIP ]##################################
+## You may be prompted to authenticate if you have not already done so.
+## If you are using the Bioconductor workshop docker image, a package
+## load hook will do this automagically.
+#
+# authenticate(file="YOUR/PATH/TO/client_secrets.json", invokeBrowser=FALSE)
+###############################################################
 ```
 
 ```{r message=FALSE, comment=NA}
