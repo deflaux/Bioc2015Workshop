@@ -43,15 +43,6 @@ Suppose we have a new dataset.  One of the first things we might do is a basic v
 
 In this example we are reading in previously computed results, but its easy to spin up an [Apache Spark](http://spark.apache.org/) cluster on [Google Compute Engine](https://cloud.google.com/hadoop/what-is-hadoop) and run this analysis.
 
-```{r eval=FALSE}
-######################[ TIP ]##################################
-## Add the Google Cloud Platform project id under which these queries will run to your .Rprofile.
-## If you are using the Bioconductor workshop docker image, this is already set for you.
-
-# project <- "YOUR-PROJECT-ID"
-#####################################################################
-```
-
 ```{r message=FALSE, comment=NA}
 pca_1kg <- read.table(file.path(system.file(package = "Bioc2015Workshop"), "extdata", "1kg-pca.tsv"), col.names=c("Sample", "PC1", "PC2"))
 ```
@@ -88,6 +79,16 @@ we see that ethnicity appears to strongly correlate with the clusters.
 ### Querying
 
 Let's also visualize a different aspect of this data by examining the variant counts for each individual of heterozygous reference variants (where one of the alleles is equal to the reference) and heterozygous alternate variants (where neither of the alleles is equal to the reference).
+
+```{r eval=FALSE}
+######################[ TIP ]##################################
+## Set the Google Cloud Platform project id under which these queries will run.
+## If you are using the Bioconductor workshop docker image, this is already
+## set for you in your .Rprofile.
+
+# project <- "YOUR-PROJECT-ID"
+#####################################################################
+```
 
 ```{r comment=NA, message=FALSE, warning=FALSE}
 # Setup for BigQuery access

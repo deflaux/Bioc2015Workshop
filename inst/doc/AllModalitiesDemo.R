@@ -1,11 +1,3 @@
-## ----eval=FALSE----------------------------------------------------------
-## ######################[ TIP ]##################################
-## ## Add the Google Cloud Platform project id under which these queries will run to your .Rprofile.
-## ## If you are using the Bioconductor workshop docker image, this is already set for you.
-## 
-## # project <- "YOUR-PROJECT-ID"
-## #####################################################################
-
 ## ----message=FALSE, comment=NA-------------------------------------------
 pca_1kg <- read.table(file.path(system.file(package = "Bioc2015Workshop"), "extdata", "1kg-pca.tsv"), col.names=c("Sample", "PC1", "PC2"))
 
@@ -28,6 +20,15 @@ ggplot(pca_1kg) +
   xlab("principal component 1") +
   ylab("principal component 2") +
   ggtitle("Principal Coordinate Analysis upon 1,000 Genomes")
+
+## ----eval=FALSE----------------------------------------------------------
+## ######################[ TIP ]##################################
+## ## Set the Google Cloud Platform project id under which these queries will run.
+## ## If you are using the Bioconductor workshop docker image, this is already
+## ## set for you in your .Rprofile.
+## 
+## # project <- "YOUR-PROJECT-ID"
+## #####################################################################
 
 ## ----comment=NA, message=FALSE, warning=FALSE----------------------------
 # Setup for BigQuery access

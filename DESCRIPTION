@@ -11,15 +11,10 @@ Authors@R: c(person("Craig", "Citro", role = c("aut"),
                     email="sidb@google.com"))
 Depends:
     R (>= 3.1.0),
-    GenomicAlignments (>= 1.0.1),
-    VariantAnnotation
-Imports:
-    Biostrings, GenomeInfoDb, GenomicRanges, IRanges, httr, rjson, Rsamtools,
-    S4Vectors
+    GoogleGenomics,
+    ggplot2, bigrquery, scales, xtable
 Suggests:
-    BiocStyle, httpuv, knitr, rmarkdown, testthat,
-    ggbio, ggplot2, bigrquery, scales, xtable,
-    BSgenome.Hsapiens.UCSC.hg19, org.Hs.eg.db, TxDb.Hsapiens.UCSC.hg19.knownGene
+    BiocStyle, httpuv, knitr, rmarkdown
 Description: Provides several vignettes for the GoogleGenomics workshop at the Bioc 2015 Conference.  Some of the vignettes can be built via the R package build but others cannot due to human intervention needed for the oauth flows.
 VignetteBuilder: knitr
 License: Apache License (== 2.0) | file LICENSE
