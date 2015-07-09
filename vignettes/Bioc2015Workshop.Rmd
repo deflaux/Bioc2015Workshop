@@ -4,7 +4,7 @@ output:
   BiocStyle::html_document
 ---
 
-<!-- Copyright 2014 Google Inc. All rights reserved. -->
+<!-- Copyright 2015 Google Inc. All rights reserved. -->
 
 <!-- Licensed under the Apache License, Version 2.0 (the "License"); -->
 <!-- you may not use this file except in compliance with the License. -->
@@ -27,34 +27,94 @@ output:
 BiocStyle::markdown()
 ```
 
+Welcome to the GoogleGenomics workshop at *BioC 2015: Where Software and Biology Connect*
+
+If you have not yet setup for Google Cloud Platform, please follow [these instructions](http://googlegenomics.readthedocs.org/en/latest/workshops/bioc-2015.html) to get setup and then come back to this vignette.
+
+This workshop consists of four parts:
+
+ * Part 1: Use the [GoogleGenomics](http://bioconductor.org/packages/devel/bioc/html/GoogleGenomics.html) package to work with Reads in Bioconductor
+ * Part 2: Use the [GoogleGenomics](http://bioconductor.org/packages/devel/bioc/html/GoogleGenomics.html) package to work with Variants in Bioconductor
+ * Part 3: Use the [bigrquery](http://cran.r-project.org/web/packages/bigrquery/index.html) package to query Variants via [Google BigQuery](https://cloud.google.com/bigquery/what-is-bigquery) 
+ * Part 4: And then we bring it all together to do an end-to-end analysis!
+
+Part 1: Work with Reads in Bioconductor
+========================================
+
+(1) View the documentation for the [GoogleGenomics](http://bioconductor.org/packages/devel/bioc/html/GoogleGenomics.html) package.
 ```{r}
 help(package="GoogleGenomics")
 ```
 
-Then click on "User guides, package vignettes and other documentation."
+(2) Click on *"User guides, package vignettes and other documentation."*
 
+(3) View the rendered vignette by clicking on the *"HTML"* link for [Plotting Alignments](http://bioconductor.org/packages/devel/bioc/vignettes/GoogleGenomics/inst/doc/PlottingAlignments.html) or 
 ```{r eval=FALSE}
-file.edit(file.path(system.file(package = "GoogleGenomics"), "doc", "PlottingAlignments.Rmd"))
 file.show(file.path(system.file(package = "GoogleGenomics"), "doc", "PlottingAlignments.html"))
 ```
 
+
+(4) Open the vignette to run it line-by-line via:
 ```{r eval=FALSE}
-file.edit(file.path(system.file(package = "GoogleGenomics"), "doc", "VariantAnnotation-comparison-test.Rmd"))
+file.edit(file.path(system.file(package = "GoogleGenomics"), "doc", "PlottingAlignments.Rmd"))
+```
+
+Part 2: Work with Variants in Bioconductor
+===========================================
+
+(1) View the documentation for the [GoogleGenomics](http://bioconductor.org/packages/devel/bioc/html/GoogleGenomics.html) package.
+```{r}
+help(package="GoogleGenomics")
+```
+
+(2) Click on *"User guides, package vignettes and other documentation."*.
+
+(3) View the rendered vignette by either clicking on the *"HTML"* link for [Reproducing Variant Annotation Results](http://bioconductor.org/packages/devel/bioc/vignettes/GoogleGenomics/inst/doc/VariantAnnotation-comparison-test.html) or 
+```{r eval=FALSE}
 file.show(file.path(system.file(package = "GoogleGenomics"), "doc", "VariantAnnotation-comparison-test.html"))
 ```
 
+(4) Open the vignette to run it line-by-line via:
+```{r eval=FALSE}
+file.edit(file.path(system.file(package = "GoogleGenomics"), "doc", "VariantAnnotation-comparison-test.Rmd"))
+```
+
+Part 3: Query Variants with BigQuery
+====================================
+
+(1) View the documentation for this package.
 ```{r}
 help(package="Bioc2015Workshop")
 ```
 
-Then click on "User guides, package vignettes and other documentation."
+(2) Click on *"User guides, package vignettes and other documentation."*.
 
+(3) View the rendered vignette by either clicking on the *"BigQueryDemo.html"* link for [Using BigQuery from R](https://github.com/deflaux/Bioc2015Workshop/blob/master/inst/doc/BigQueryDemo.md) or 
 ```{r eval=FALSE}
-file.edit(file.path(system.file(package = "Bioc2015Workshop"), "doc", "BigQueryDemo.Rmd"))
 file.show(file.path(system.file(package = "Bioc2015Workshop"), "doc", "BigQueryDemo.html"))
 ```
 
+(4) Open the vignette to run it line-by-line via:
+```{r eval=FALSE}
+file.edit(file.path(system.file(package = "Bioc2015Workshop"), "doc", "BigQueryDemo.Rmd"))
+```
+
+Part 4: Bring it all together in an end-to-end analysis
+=======================================================
+
+(1) View the documentation for this package.
+```{r}
+help(package="Bioc2015Workshop")
+```
+
+(2) Click on *"User guides, package vignettes and other documentation."*.
+
+(3) View the rendered vignette by either clicking on the *"AllModalitiesDemo.html"* link for [Data Analysis using Google Genomics](https://github.com/deflaux/Bioc2015Workshop/blob/master/inst/doc/AllModalitiesDemo.md) or 
+```{r eval=FALSE}
+file.show(file.path(system.file(package = "Bioc2015Workshop"), "doc", "AllModalitiesDemo.html"))
+```
+
+(4) Open the vignette to run it line-by-line via:
 ```{r eval=FALSE}
 file.edit(file.path(system.file(package = "Bioc2015Workshop"), "doc", "AllModalitiesDemo.Rmd"))
-file.show(file.path(system.file(package = "Bioc2015Workshop"), "doc", "AllModalitiesDemo.html"))
 ```
