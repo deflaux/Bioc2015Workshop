@@ -12,7 +12,7 @@ Authors@R: c(person("Craig", "Citro", role = c("aut"),
 Depends:
     R (>= 3.1.0)
 Suggests:
-    GoogleGenomics, VariantAnnotation, ggbio
+    GoogleGenomics, VariantAnnotation, ggbio,
     BSgenome.Hsapiens.UCSC.hg19, TxDb.Hsapiens.UCSC.hg19.knownGene,
     bigrquery, ggplot2, dplyr, scales, xtable,
     BiocStyle, httpuv, knitr, rmarkdown
