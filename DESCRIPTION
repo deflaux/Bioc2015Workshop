@@ -10,10 +10,11 @@ Authors@R: c(person("Craig", "Citro", role = c("aut"),
              person("Siddhartha", "Bagaria", role = c("aut"),
                     email="sidb@google.com"))
 Depends:
-    R (>= 3.1.0),
-    GoogleGenomics,
-    ggplot2, bigrquery, scales, xtable
+    R (>= 3.1.0)
 Suggests:
+    GoogleGenomics, VariantAnnotation, ggbio
+    BSgenome.Hsapiens.UCSC.hg19, TxDb.Hsapiens.UCSC.hg19.knownGene,
+    bigrquery, ggplot2, dplyr, scales, xtable,
     BiocStyle, httpuv, knitr, rmarkdown
 Description: Provides several vignettes for the GoogleGenomics workshop at the Bioc 2015 Conference.  Some of the vignettes can be built via the R package build but others cannot due to human intervention needed for the oauth flows.
 VignetteBuilder: knitr
