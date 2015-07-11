@@ -14,7 +14,7 @@ Depends:
 Suggests:
     GoogleGenomics, VariantAnnotation, ggbio,
     BSgenome.Hsapiens.UCSC.hg19, TxDb.Hsapiens.UCSC.hg19.knownGene,
-    bigrquery, ggplot2, dplyr, scales, xtable,
+    bigrquery, ggplot2, dplyr, scales,
     BiocStyle, httpuv, knitr, rmarkdown
 Description: Provides several vignettes for the GoogleGenomics workshop at the Bioc 2015 Conference.  Some of the vignettes can be built via the R package build but others cannot due to human intervention needed for the oauth flows.
 VignetteBuilder: knitr

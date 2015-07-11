@@ -35,7 +35,7 @@ This workshop consists of four parts:
 
  * Part 1: Use the [GoogleGenomics](http://bioconductor.org/packages/devel/bioc/html/GoogleGenomics.html) package to work with Reads in Bioconductor
  * Part 2: Use the [GoogleGenomics](http://bioconductor.org/packages/devel/bioc/html/GoogleGenomics.html) package to work with Variants in Bioconductor
- * Part 3: Use the [bigrquery](http://cran.r-project.org/web/packages/bigrquery/index.html) package to query Variants via [Google BigQuery](https://cloud.google.com/bigquery/what-is-bigquery) 
+ * Part 3: Use the [bigrquery](http://cran.r-project.org/web/packages/bigrquery/index.html) package to analyze Variants via [Google BigQuery](https://cloud.google.com/bigquery/what-is-bigquery) 
  * Part 4: And then we bring it all together to do an end-to-end analysis!
 
 Part 1: Work with Reads in Bioconductor
@@ -79,7 +79,7 @@ file.show(file.path(system.file(package = "GoogleGenomics"), "doc", "VariantAnno
 file.edit(file.path(system.file(package = "GoogleGenomics"), "doc", "VariantAnnotation-comparison-test.Rmd"))
 ```
 
-Part 3: Query Variants with BigQuery
+Part 3: Analyze Variants with BigQuery
 ====================================
 
 (1) View the documentation for this package.
