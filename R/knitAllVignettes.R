@@ -24,7 +24,7 @@ knitAllVignettes <- function() {
   lapply(c("BigQueryDemo.Rmd", "AllModalitiesDemo.Rmd"), function(rmd) {
     knit(rmd)
     knit2html(rmd)
-    purl(rmd)
+    purl(rmd, documentation=2)
   }
   )
 }

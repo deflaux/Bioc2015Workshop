@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 <!-- R Markdown Documentation, DO NOT EDIT THE PLAIN MARKDOWN VERSION OF THIS FILE -->
 
 <!-- Copyright 2014 Google Inc. All rights reserved. -->
@@ -204,7 +201,7 @@ head(result)
 
 ### Annotate Variants with BioConductor
 
-Now let's use the [GoogleGenomics R client](https://github.com/googlegenomics/api-client-r) to retrieve the full records for the variants in which we are interested.
+Now let's use the [GoogleGenomics R client](https://github.com/Bioconductor/GoogleGenomics) to retrieve the full records for the variants in which we are interested.
 ```{r message=FALSE, comment=NA}
 require(GoogleGenomics)
 ```
