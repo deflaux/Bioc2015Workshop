@@ -29,10 +29,11 @@ require(bigrquery)
 ```
 
 ```{r eval=FALSE}
-######################[ TIP ]##################################
+######################[ TIP ]########################################
 ## Set the Google Cloud Platform project id under which these queries will run.
-## If you are using the Bioconductor workshop docker image, this is already
-## set for you in your .Rprofile.
+## 
+## If you are using the Google Bioconductor workshop docker image, this is already
+## set for you in your .Rprofile and you can skip this step.
 
 # project <- "YOUR-PROJECT-ID"
 #####################################################################
@@ -54,9 +55,26 @@ querySql
 And send the query to the cloud for execution:
 ```{r}
 result <- query_exec(querySql, project=project)
+```
+
+[bigrquery](https://github.com/hadley/bigrquery) uses the package [httr](https://github.com/hadley/httr) to perform OAuth.
+
+```{r eval=FALSE}
+######################[ TIP ]########################################
+## If you have any trouble with OAuth and need to redo/reset OAuth,
+## run the following code.
+
+# if(FALSE != getOption("httr_oauth_cache")) {
+#  file.remove(getOption("httr_oauth_cache"))
+#}
+#message("Restart R to redo/reset OAuth.")
+#####################################################################
+```
+
+And we see that the table has `r result[1,1]` rows - wow!
+```{r}
 result
 ```
-And we see that the table has `r result[1,1]` rows - wow!
 
 ## Run a query using the BigQuery Web User Interface
 
