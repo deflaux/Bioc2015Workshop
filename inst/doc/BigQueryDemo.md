@@ -31,10 +31,11 @@ require(bigrquery)
 
 
 ```r
-######################[ TIP ]##################################
+######################[ TIP ]########################################
 ## Set the Google Cloud Platform project id under which these queries will run.
-## If you are using the Bioconductor workshop docker image, this is already
-## set for you in your .Rprofile.
+## 
+## If you are using the Google Bioconductor workshop docker image, this is already
+## set for you in your .Rprofile and you can skip this step.
 
 # project <- "YOUR-PROJECT-ID"
 #####################################################################
@@ -63,6 +64,26 @@ And send the query to the cloud for execution:
 
 ```r
 result <- query_exec(querySql, project=project)
+```
+
+[bigrquery](https://github.com/hadley/bigrquery) uses the package [httr](https://github.com/hadley/httr) to perform OAuth.
+
+
+```r
+######################[ TIP ]########################################
+## If you have any trouble with OAuth and need to redo/reset OAuth,
+## run the following code.
+
+# if(FALSE != getOption("httr_oauth_cache")) {
+#  file.remove(getOption("httr_oauth_cache"))
+#}
+#message("Restart R to redo/reset OAuth.")
+#####################################################################
+```
+
+And we see that the table has 688167235 rows - wow!
+
+```r
 result
 ```
 
@@ -70,7 +91,6 @@ result
 ##         f0_
 ## 1 688167235
 ```
-And we see that the table has 688167235 rows - wow!
 
 ## Run a query using the BigQuery Web User Interface
 
@@ -281,7 +301,7 @@ FROM (
     window)
 ORDER BY
   window_start
-Retrieving data:  2.2sRetrieving data:  4.0s
+Retrieving data:  2.6s
 ```
 Number of rows returned by this query: 28734.
 
@@ -315,18 +335,18 @@ head(result)
 
 ```
 ##   reference_name window_start transitions transversions     titv
-## 1           chr7            0         483           272 1.775735
-## 2           chr1            0         293           198 1.479798
-## 3           chr8            0         248           109 2.275229
-## 4          chr16            0         138           125 1.104000
-## 5           chr3            0         100           101 0.990099
+## 1           chr2            0          64            59 1.084746
+## 2          chr18            0         441           394 1.119289
+## 3          chr12            0         323           247 1.307692
+## 4           chr9            0         319           262 1.217557
+## 5          chr16            0         138           125 1.104000
 ## 6          chr20            0          43            36 1.194444
 ##   num_variants_in_window
-## 1                    755
-## 2                    491
-## 3                    357
-## 4                    263
-## 5                    201
+## 1                    123
+## 2                    835
+## 3                    570
+## 4                    581
+## 5                    263
 ## 6                     79
 ```
 
@@ -360,6 +380,10 @@ ggplot(chromosomeOneResults, aes(x=window_start, y=titv)) +
   ggtitle("Ti/Tv by 100,000 base pair windows on Chromosome 1")
 ```
 
+```
+## geom_smooth: method="auto" and size of largest group is >=1000, so using gam with formula: y ~ s(x, bs = "cs"). Use 'method = x' to change the smoothing method.
+```
+
 ![plot of chunk titv](figure/titv-1.png) 
 
 ## Provenance
@@ -369,27 +393,55 @@ sessionInfo()
 ```
 
 ```
-R version 3.2.0 (2015-04-16)
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
-Running under: OS X 10.10.3 (Yosemite)
+R version 3.2.1 RC (2015-06-10 r68509)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux 8 (jessie)
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+[8] methods   base     
 
 other attached packages:
-[1] mgcv_1.8-6           nlme_3.1-120         scales_0.2.4        
-[4] ggplot2_1.0.1        dplyr_0.4.1          bigrquery_0.1.0     
-[7] knitr_1.10.5         Bioc2015Workshop_0.1
+ [1] mgcv_1.8-6                 nlme_3.1-120              
+ [3] scales_0.2.5               ggplot2_1.0.1             
+ [5] dplyr_0.4.2                knitr_1.10.5              
+ [7] Bioc2015Workshop_0.1       bigrquery_0.1.0           
+ [9] GoogleGenomics_1.1.1       VariantAnnotation_1.15.20 
+[11] GenomicAlignments_1.5.11   Rsamtools_1.21.13         
+[13] Biostrings_2.37.2          XVector_0.9.1             
+[15] SummarizedExperiment_0.3.2 Biobase_2.29.1            
+[17] GenomicRanges_1.21.16      GenomeInfoDb_1.5.8        
+[19] IRanges_2.3.14             S4Vectors_0.7.10          
+[21] BiocGenerics_0.15.3        BiocInstaller_1.19.8      
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.11.6      rstudioapi_0.3.1 magrittr_1.5     MASS_7.3-40     
- [5] munsell_0.4.2    lattice_0.20-31  colorspace_1.2-6 R6_2.1.0        
- [9] stringr_1.0.0    httr_1.0.0       plyr_1.8.2       tools_3.2.0     
-[13] parallel_3.2.0   grid_3.2.0       gtable_0.1.2     DBI_0.3.1       
-[17] lazyeval_0.1.10  assertthat_0.1   digest_0.6.8     Matrix_1.2-0    
-[21] reshape2_1.4.1   formatR_1.2      curl_0.9.1       evaluate_0.7    
-[25] labeling_0.3     stringi_0.5-5    jsonlite_0.9.16  proto_0.3-10    
+ [1] reshape2_1.4.1          lattice_0.20-31        
+ [3] colorspace_1.2-6        rtracklayer_1.29.12    
+ [5] GenomicFeatures_1.21.13 XML_3.98-1.3           
+ [7] DBI_0.3.1               BiocParallel_1.3.34    
+ [9] lambda.r_1.1.7          plyr_1.8.3             
+[11] stringr_1.0.0           zlibbioc_1.15.0        
+[13] munsell_0.4.2           gtable_0.1.2           
+[15] futile.logger_1.4.1     evaluate_0.7           
+[17] labeling_0.3            biomaRt_2.25.1         
+[19] httpuv_1.3.2            curl_0.9.1             
+[21] AnnotationDbi_1.31.17   proto_0.3-10           
+[23] Rcpp_0.11.6             BSgenome_1.37.3        
+[25] formatR_1.2             jsonlite_0.9.16        
+[27] rjson_0.2.15            digest_0.6.8           
+[29] stringi_0.5-5           grid_3.2.1             
+[31] tools_3.2.1             bitops_1.0-6           
+[33] magrittr_1.5            RCurl_1.95-4.7         
+[35] lazyeval_0.1.10         RSQLite_1.0.0          
+[37] futile.options_1.0.0    MASS_7.3-40            
+[39] Matrix_1.2-0            assertthat_0.1         
+[41] httr_1.0.0              R6_2.1.0               
 ```

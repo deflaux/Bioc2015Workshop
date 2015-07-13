@@ -34,4 +34,5 @@ FROM (
     reference_name,
     window)
 ORDER BY
+  reference_name,
   window_start

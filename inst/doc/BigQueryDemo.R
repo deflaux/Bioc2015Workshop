@@ -2,10 +2,11 @@
 require(bigrquery)
 
 ## ----eval=FALSE----------------------------------------------------------
-## ######################[ TIP ]##################################
+## ######################[ TIP ]########################################
 ## ## Set the Google Cloud Platform project id under which these queries will run.
-## ## If you are using the Bioconductor workshop docker image, this is already
-## ## set for you in your .Rprofile.
+## ##
+## ## If you are using the Google Bioconductor workshop docker image, this is already
+## ## set for you in your .Rprofile and you can skip this step.
 ## 
 ## # project <- "YOUR-PROJECT-ID"
 ## #####################################################################
@@ -22,6 +23,19 @@ querySql
 
 ## ------------------------------------------------------------------------
 result <- query_exec(querySql, project=project)
+
+## ----eval=FALSE----------------------------------------------------------
+## ######################[ TIP ]########################################
+## ## If you have any trouble with OAuth and need to redo/reset OAuth,
+## ## run the following code.
+## 
+## # if(FALSE != getOption("httr_oauth_cache")) {
+## #  file.remove(getOption("httr_oauth_cache"))
+## #}
+## #message("Restart R to redo/reset OAuth.")
+## #####################################################################
+
+## ------------------------------------------------------------------------
 result
 
 ## ------------------------------------------------------------------------
