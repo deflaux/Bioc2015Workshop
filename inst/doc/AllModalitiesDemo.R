@@ -1,3 +1,8 @@
+## ---- echo=FALSE, results="hide"-----------------------------------------
+# Ensure that any errors cause the Vignette build to fail.
+library(knitr)
+opts_chunk$set(error=FALSE)
+
 ## ----message=FALSE, comment=NA-------------------------------------------
 pca_1kg <- read.table(file.path(system.file(package = "Bioc2015Workshop"), "extdata", "1kg-pca.tsv"), col.names=c("Sample", "PC1", "PC2"))
 
@@ -123,10 +128,6 @@ variants <- Reduce(c, apply(top_results_sorted_by_start,
                                          end=as.integer(var["end"]))
                              }))
 length(variants)
-names(variants[[1]])
-length(variants[[1]]$calls)
-names(variants[[1]]$calls[[1]])
-variants[[1]]$calls[[1]]
 
 ## ----message=FALSE, comment=NA-------------------------------------------
 granges <- variantsToGRanges(variants)

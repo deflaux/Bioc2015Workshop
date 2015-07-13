@@ -17,10 +17,12 @@ output: pdf_document
 <!-- See the License for the specific language governing permissions and -->
 <!-- limitations under the License. -->
 
+
+
 Data Analysis using Google Genomics
 ===================================
 
-The following example makes use of the [Phase 1 variants](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20110521/README.phase1_integrated_release_version3_20120430) from the [1,000 Genomes Project](http://www.1000genomes.org/).  For more detail about how this data was loaded into the Google Genomics API, please see [Google Genomics Public Data](https://cloud.google.com/genomics/data/1000-genomes).
+The following example makes use of the [Phase 1 variants](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20110521/README.phase1_integrated_release_version3_20120430) from the [1,000 Genomes Project](http://www.1000genomes.org/).  For more detail about how this data was loaded into the Google Genomics API, please see [Google Genomics Public Data](http://googlegenomics.readthedocs.org/en/latest/use_cases/discover_public_data/1000_genomes.html).
 
 The VCFs comprising this dataset are **1.12 TB** when uncompressed and provide information about **39,706,715** variants for **1,092** individuals.
 
@@ -395,73 +397,6 @@ length(variants)
 [1] 20
 ```
 
-```r
-names(variants[[1]])
-```
-
-```
- [1] "variantSetId"   "id"             "names"          "created"       
- [5] "referenceName"  "start"          "end"            "referenceBases"
- [9] "alternateBases" "quality"        "filter"         "info"          
-[13] "calls"         
-```
-
-```r
-length(variants[[1]]$calls)
-```
-
-```
-[1] 1092
-```
-
-```r
-names(variants[[1]]$calls[[1]])
-```
-
-```
-[1] "callSetId"          "callSetName"        "genotype"          
-[4] "phaseset"           "genotypeLikelihood" "info"              
-```
-
-```r
-variants[[1]]$calls[[1]]
-```
-
-```
-$callSetId
-[1] "10473108253681171589-0"
-
-$callSetName
-[1] "HG00261"
-
-$genotype
-$genotype[[1]]
-[1] 0
-
-$genotype[[2]]
-[1] 0
-
-
-$phaseset
-[1] "*"
-
-$genotypeLikelihood
-$genotypeLikelihood[[1]]
-[1] 0
-
-$genotypeLikelihood[[2]]
-[1] -2.63
-
-$genotypeLikelihood[[3]]
-[1] -5
-
-
-$info
-$info$DS
-$info$DS[[1]]
-[1] "0.000"
-```
-
 We can also convert this data to [BioConductor](http://www.bioconductor.org/) datatypes such as [GRanges data type](http://www.bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.pdf).
 
 ```r
@@ -517,17 +452,17 @@ codingVariants
 GRanges object with 22 ranges and 9 metadata columns:
       seqnames               ranges strand   | LOCATION  LOCSTART
          <Rle>            <IRanges>  <Rle>   | <factor> <integer>
-    1    chr17 [41244000, 41244000]      *   |   coding      3335
-    2    chr17 [41244000, 41244000]      *   |   coding      3407
-    3    chr17 [41244000, 41244000]      *   |   coding      3548
-    4    chr17 [41244000, 41244000]      *   |   coding      3548
-    5    chr17 [41244000, 41244000]      *   |   coding      3548
+    1    chr17 [41244000, 41244000]      -   |   coding      3335
+    2    chr17 [41244000, 41244000]      -   |   coding      3407
+    3    chr17 [41244000, 41244000]      -   |   coding      3548
+    4    chr17 [41244000, 41244000]      -   |   coding      3548
+    5    chr17 [41244000, 41244000]      -   |   coding      3548
   ...      ...                  ...    ... ...      ...       ...
-   18    chr17 [41245466, 41245466]      *   |   coding      2082
-   19    chr17 [41245466, 41245466]      *   |   coding      2082
-   20    chr17 [41245466, 41245466]      *   |   coding      1941
-   21    chr17 [41245466, 41245466]      *   |   coding      2004
-   22    chr17 [41245466, 41245466]      *   |   coding      1194
+   18    chr17 [41245466, 41245466]      -   |   coding      2082
+   19    chr17 [41245466, 41245466]      -   |   coding      2082
+   20    chr17 [41245466, 41245466]      -   |   coding      1941
+   21    chr17 [41245466, 41245466]      -   |   coding      2004
+   22    chr17 [41245466, 41245466]      -   |   coding      1194
          LOCEND   QUERYID        TXID                    CDSID      GENEID
       <integer> <integer> <character>            <IntegerList> <character>
     1      3335         8       63595 186231,186230,186233,...         672
@@ -708,68 +643,73 @@ sessionInfo()
 ```
 
 ```
-R version 3.2.0 (2015-04-16)
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
-Running under: OS X 10.10.3 (Yosemite)
+R version 3.2.1 RC (2015-06-10 r68509)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux 8 (jessie)
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] ggbio_1.16.0                           
- [2] TxDb.Hsapiens.UCSC.hg19.knownGene_3.1.2
- [3] GenomicFeatures_1.20.1                 
- [4] AnnotationDbi_1.30.1                   
- [5] Biobase_2.28.0                         
- [6] BSgenome.Hsapiens.UCSC.hg19_1.4.0      
- [7] BSgenome_1.36.0                        
- [8] rtracklayer_1.28.4                     
- [9] GoogleGenomics_1.0.0                   
-[10] scales_0.2.4                           
-[11] dplyr_0.4.1                            
-[12] xtable_1.7-4                           
-[13] ggplot2_1.0.1                          
-[14] bigrquery_0.1.0                        
-[15] knitr_1.10.5                           
-[16] Bioc2015Workshop_0.1                   
-[17] VariantAnnotation_1.14.1               
-[18] GenomicAlignments_1.4.1                
-[19] Rsamtools_1.20.4                       
-[20] Biostrings_2.36.1                      
-[21] XVector_0.8.0                          
-[22] GenomicRanges_1.20.4                   
-[23] GenomeInfoDb_1.4.0                     
-[24] IRanges_2.2.2                          
-[25] S4Vectors_0.6.0                        
-[26] BiocGenerics_0.14.0                    
-[27] devtools_1.8.0                         
+ [1] ggbio_1.17.1                           
+ [2] mgcv_1.8-6                             
+ [3] nlme_3.1-120                           
+ [4] knitr_1.10.5                           
+ [5] Bioc2015Workshop_0.1                   
+ [6] TxDb.Hsapiens.UCSC.hg19.knownGene_3.1.3
+ [7] GenomicFeatures_1.21.13                
+ [8] AnnotationDbi_1.31.17                  
+ [9] BSgenome.Hsapiens.UCSC.hg19_1.4.0      
+[10] BSgenome_1.37.3                        
+[11] rtracklayer_1.29.12                    
+[12] GoogleGenomics_1.1.1                   
+[13] VariantAnnotation_1.15.20              
+[14] GenomicAlignments_1.5.11               
+[15] Rsamtools_1.21.13                      
+[16] Biostrings_2.37.2                      
+[17] XVector_0.9.1                          
+[18] SummarizedExperiment_0.3.2             
+[19] Biobase_2.29.1                         
+[20] GenomicRanges_1.21.16                  
+[21] GenomeInfoDb_1.5.8                     
+[22] IRanges_2.3.14                         
+[23] S4Vectors_0.7.10                       
+[24] BiocGenerics_0.15.3                    
+[25] scales_0.2.5                           
+[26] dplyr_0.4.2                            
+[27] ggplot2_1.0.1                          
+[28] bigrquery_0.1.0                        
+[29] stringr_1.0.0                          
 
 loaded via a namespace (and not attached):
- [1] httr_1.0.0           jsonlite_0.9.16      splines_3.2.0       
- [4] Formula_1.2-1        assertthat_0.1       highr_0.5           
- [7] latticeExtra_0.6-26  RBGL_1.44.0          yaml_2.1.13         
-[10] biovizBase_1.16.0    RSQLite_1.0.0        lattice_0.20-31     
-[13] digest_0.6.8         RColorBrewer_1.1-2   colorspace_1.2-6    
-[16] htmltools_0.2.6      plyr_1.8.2           OrganismDbi_1.10.0  
-[19] XML_3.98-1.2         biomaRt_2.24.0       zlibbioc_1.14.0     
-[22] BiocParallel_1.2.2   git2r_0.10.1         nnet_7.3-9          
-[25] lazyeval_0.1.10      proto_0.3-10         survival_2.38-1     
-[28] magrittr_1.5         crayon_1.3.0         mime_0.3            
-[31] memoise_0.2.1        evaluate_0.7         GGally_0.5.0        
-[34] MASS_7.3-40          foreign_0.8-63       xml2_0.1.1          
-[37] graph_1.46.0         tools_3.2.0          formatR_1.2         
-[40] stringr_1.0.0        munsell_0.4.2        cluster_2.0.1       
-[43] lambda.r_1.1.7       rversions_1.0.1      futile.logger_1.4.1 
-[46] grid_3.2.0           RCurl_1.95-4.6       dichromat_2.0-0     
-[49] rstudioapi_0.3.1     rjson_0.2.15         bitops_1.0-6        
-[52] labeling_0.3         rmarkdown_0.6.1      testthat_0.10.0     
-[55] gtable_0.1.2         DBI_0.3.1            reshape_0.8.5       
-[58] curl_0.9.1           markdown_0.7.7       reshape2_1.4.1      
-[61] R6_2.1.0             gridExtra_0.9.1      Hmisc_3.16-0        
-[64] futile.options_1.0.0 stringi_0.5-5        Rcpp_0.11.6         
-[67] rpart_4.1-9          acepack_1.3-3.3     
+ [1] httr_1.0.0           jsonlite_0.9.16      splines_3.2.1       
+ [4] Formula_1.2-1        assertthat_0.1       latticeExtra_0.6-26 
+ [7] RBGL_1.45.1          yaml_2.1.13          biovizBase_1.17.1   
+[10] RSQLite_1.0.0        lattice_0.20-31      digest_0.6.8        
+[13] RColorBrewer_1.1-2   colorspace_1.2-6     htmltools_0.2.6     
+[16] Matrix_1.2-0         plyr_1.8.3           OrganismDbi_1.11.42 
+[19] XML_3.98-1.3         biomaRt_2.25.1       zlibbioc_1.15.0     
+[22] BiocParallel_1.3.34  nnet_7.3-9           lazyeval_0.1.10     
+[25] proto_0.3-10         survival_2.38-2      magrittr_1.5        
+[28] mime_0.3             evaluate_0.7         GGally_0.5.0        
+[31] MASS_7.3-40          foreign_0.8-63       graph_1.47.2        
+[34] BiocInstaller_1.19.8 tools_3.2.1          formatR_1.2         
+[37] munsell_0.4.2        cluster_2.0.1        lambda.r_1.1.7      
+[40] futile.logger_1.4.1  grid_3.2.1           RCurl_1.95-4.7      
+[43] dichromat_2.0-0      rstudioapi_0.3.1     rjson_0.2.15        
+[46] bitops_1.0-6         labeling_0.3         rmarkdown_0.7       
+[49] gtable_0.1.2         DBI_0.3.1            reshape_0.8.5       
+[52] curl_0.9.1           markdown_0.7.7       reshape2_1.4.1      
+[55] R6_2.1.0             gridExtra_0.9.1      Hmisc_3.16-0        
+[58] futile.options_1.0.0 stringi_0.5-5        Rcpp_0.11.6         
+[61] rpart_4.1-9          acepack_1.3-3.3     
 ```

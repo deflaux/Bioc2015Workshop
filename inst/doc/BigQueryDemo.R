@@ -1,3 +1,8 @@
+## ---- echo=FALSE, results="hide"-----------------------------------------
+# Ensure that any errors cause the Vignette build to fail.
+library(knitr)
+opts_chunk$set(error=FALSE)
+
 ## ----message=FALSE-------------------------------------------------------
 require(bigrquery)
 
