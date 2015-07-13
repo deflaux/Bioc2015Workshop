@@ -14,6 +14,12 @@
 <!-- See the License for the specific language governing permissions and -->
 <!-- limitations under the License. -->
 
+```{r, echo=FALSE, results="hide"}
+# Ensure that any errors cause the Vignette build to fail.
+library(knitr)
+opts_chunk$set(error=FALSE)
+```
+
 # Analyzing Variants with BigQuery
 
 Google Genomics can import variant calls from VCF files or Complete Genomics masterVar files so that you can query them with a simple API as we saw earlier in vignette [Working with Variants](http://bioconductor.org/packages/devel/bioc/vignettes/GoogleGenomics/inst/doc/VariantAnnotation-comparison-test.html).  You can also export Variants to BigQuery for interactive analysis of these large datasets.  For more detail, see https://cloud.google.com/genomics/v1/managing-variants

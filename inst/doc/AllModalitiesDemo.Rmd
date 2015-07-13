@@ -17,6 +17,12 @@ output: pdf_document
 <!-- See the License for the specific language governing permissions and -->
 <!-- limitations under the License. -->
 
+```{r, echo=FALSE, results="hide"}
+# Ensure that any errors cause the Vignette build to fail.
+library(knitr)
+opts_chunk$set(error=FALSE)
+```
+
 Data Analysis using Google Genomics
 ===================================
 
@@ -224,10 +230,6 @@ variants <- Reduce(c, apply(top_results_sorted_by_start,
                                          end=as.integer(var["end"]))
                              }))
 length(variants)
-names(variants[[1]])
-length(variants[[1]]$calls)
-names(variants[[1]]$calls[[1]])
-variants[[1]]$calls[[1]]
 ```
 
 We can also convert this data to [BioConductor](http://www.bioconductor.org/) datatypes such as [GRanges data type](http://www.bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.pdf).
